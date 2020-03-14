@@ -3,6 +3,7 @@ import {
   CHANGE_SEARCH_QUERY,
   CHANGE_FILTER,
   SELECT_ROW,
+  DELETE_ROW,
 } from './actionsTypes';
 
 const reducer = (state, action) => {
@@ -60,6 +61,18 @@ const reducer = (state, action) => {
         elements.forEach((el) => { newSelectedRow[el] = true; });
       }
       return { ...state, selectedRows: newSelectedRow, lastSelectedRow: lastSel };
+    }
+    case DELETE_ROW: {
+      const { data, selectedRows } = state;
+      const idList = Object.keys(selectedRows);
+      const newData = data.slice();
+      idList.forEach((id) => {
+        const index = newData.findIndex((item) => item.id === id);
+        newData.splice(index, 1);
+      });
+      return {
+        ...state, data: newData, selectedRows: {}, lastSelectedRow: null,
+      };
     }
     default:
       return state;

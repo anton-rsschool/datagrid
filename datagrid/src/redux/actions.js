@@ -3,6 +3,7 @@ import {
   CHANGE_SEARCH_QUERY,
   CHANGE_FILTER,
   SELECT_ROW,
+  DELETE_ROW,
 } from './actionsTypes';
 
 const changeSort = (payload) => (
@@ -33,9 +34,17 @@ const selectRow = (payload) => (
   }
 );
 
+const deleteRow = (payload) => (
+  {
+    type: DELETE_ROW,
+    payload,
+  }
+);
+
 export {
   changeSort,
   changeSearchQquery,
   changeFilter,
   selectRow,
+  deleteRow,
 };

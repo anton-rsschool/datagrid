@@ -2,3 +2,4 @@ export const CHANGE_SORT = 'CHANGE_SORT';
 export const CHANGE_SEARCH_QUERY = 'CHANGE_SEARCH_QUERY';
 export const CHANGE_FILTER = 'CHANGE_FILTER';
 export const SELECT_ROW = 'SELECT_ROW';
+export const DELETE_ROW = 'DELETE_ROW';

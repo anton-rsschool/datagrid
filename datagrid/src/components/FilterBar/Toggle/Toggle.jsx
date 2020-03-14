@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import './Toggle.scss';
 
-const Toggle = ({ onToggle }) => {
+const Toggle = ({ onToggle, isChecked }) => {
   const handleChange = (event) => {
     const { checked } = event.target;
     onToggle(checked);
@@ -14,7 +14,7 @@ const Toggle = ({ onToggle }) => {
     <div className="toggle__body">
       <label className="toggle__label">Active Only</label>
       <ReactToggle
-        defaultChecked={false}
+        defaultChecked={isChecked}
         onChange={handleChange}
       />
     </div>
@@ -23,6 +23,7 @@ const Toggle = ({ onToggle }) => {
 
 Toggle.propTypes = {
   onToggle: PropTypes.func.isRequired,
+  isChecked: PropTypes.bool.isRequired,
 };
 
 export default Toggle;

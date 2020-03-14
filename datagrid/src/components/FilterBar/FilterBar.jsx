@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { changeFilter } from '../../redux/actions';
 import Search from './Search';
@@ -8,6 +8,7 @@ import Toggle from './Toggle';
 import './FilterBar.scss';
 
 const FilterBar = () => {
+  const filters = useSelector((state) => state.filters);
   const dispatch = useDispatch();
 
   const options = [
@@ -15,7 +16,9 @@ const FilterBar = () => {
     { value: 'student', label: 'Student' },
     { value: 'activist', label: 'Activist' },
   ];
-
+  const defaultOptions = 'role' in filters
+    ? filters.role.map((item) => ({ value: item, label: `${item[0].toUpperCase()}${item.slice(1)}` }))
+    : [];
   const handleToggle = (value) => {
     const values = value ? [value] : [];
     dispatch(changeFilter({ field: 'status', values }));
@@ -28,11 +31,14 @@ const FilterBar = () => {
 
   return (
     <div className="filter-bar">
-      <Toggle onToggle={handleToggle} />
+      <Toggle
+        onToggle={handleToggle}
+        isChecked={'status' in filters}
+      />
       <Search />
       <EnumFilter
         options={options}
-        defaultOptions={[]}
+        defaultOptions={defaultOptions}
         label="Role"
         onChange={handleChange}
         isMulti

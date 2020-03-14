@@ -11,6 +11,7 @@ import getData from './utils/getData';
 import reducer from './redux/reducer';
 import './index.scss';
 
+const savedState = localStorage.getItem('appState');
 const initialState = {
   data: getData(1000),
   sort: {},
@@ -29,7 +30,9 @@ const initialState = {
   ],
 };
 
-const store = createStore(reducer, initialState);
+const state = savedState ? { ...initialState, ...JSON.parse(savedState) } : initialState;
+
+const store = createStore(reducer, state);
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
@@ -38,6 +41,20 @@ ReactDOM.render(
   </Provider>,
   rootElement,
 );
+
+const unloadHandler = () => {
+  const state = store.getState();
+  const {
+    sort, searchQuery, filters, selectedRows, visibleColumns,
+  } = state;
+  const newState = {
+    sort, searchQuery, filters, selectedRows, visibleColumns,
+  };
+  const currentState = JSON.stringify(newState);
+  localStorage.setItem('appState', currentState);
+};
+
+window.addEventListener('unload', unloadHandler);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

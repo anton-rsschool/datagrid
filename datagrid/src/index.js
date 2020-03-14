@@ -14,6 +14,7 @@ import './index.scss';
 const initialState = {
   data: getData(1000),
   sort: {},
+  searchQuery: null,
 };
 
 const store = createStore(reducer, initialState);

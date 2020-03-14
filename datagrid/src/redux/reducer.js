@@ -1,5 +1,6 @@
 import {
   CHANGE_SORT,
+  CHANGE_SEARCH_QUERY,
 } from './actionsTypes';
 
 const reducer = (state, action) => {
@@ -27,6 +28,13 @@ const reducer = (state, action) => {
         newSort = { ...cloneSort, [field]: 'asc' };
       }
       return { ...state, sort: newSort };
+    }
+    case CHANGE_SEARCH_QUERY: {
+      const searchQuery = action.payload;
+      const { query, fields } = searchQuery;
+      const isQuery = query !== '' && fields;
+      const newSearchQuery = isQuery ? searchQuery : null;
+      return { ...state, searchQuery: newSearchQuery };
     }
     default:
       return state;

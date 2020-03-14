@@ -1,1 +1,2 @@
 export const CHANGE_SORT = 'CHANGE_SORT';
+export const CHANGE_SEARCH_QUERY = 'CHANGE_SEARCH_QUERY';

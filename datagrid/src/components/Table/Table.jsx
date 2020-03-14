@@ -4,14 +4,16 @@ import moment from 'moment';
 
 import { changeSort } from '../../redux/actions';
 import sortData from '../../utils/sortData';
+import search from '../../utils/filterData';
 import THead from './THead';
 import TBody from './TBody';
 import './Table.scss';
 
 const Table = () => {
   const data = useSelector((state) => {
-    const { data: initData, sort } = state;
-    return sortData(initData, sort);
+    const { data: initData, sort, searchQuery } = state;
+    const filteredData = search(initData, searchQuery);
+    return sortData(filteredData, sort);
   });
   const sort = useSelector((state) => state.sort);
   const dispatch = useDispatch();

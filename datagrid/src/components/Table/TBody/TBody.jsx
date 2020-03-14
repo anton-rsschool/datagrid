@@ -5,7 +5,7 @@ import Row from '../Row';
 import './TBody.scss';
 
 const TBody = ({ data, columns }) => {
-  const rows = data.map((row) => (
+  const rows = data.slice(0, 30).map((row) => (
     <Row
       key={row.id}
       data={row}

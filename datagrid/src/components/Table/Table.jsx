@@ -1,13 +1,24 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 
+import { changeSort } from '../../redux/actions';
+import sortData from '../../utils/sortData';
 import THead from './THead';
 import TBody from './TBody';
 import './Table.scss';
 
 const Table = () => {
-  const data = useSelector((state) => state.data);
+  const data = useSelector((state) => {
+    const { data: initData, sort } = state;
+    return sortData(initData, sort);
+  });
+  const sort = useSelector((state) => state.sort);
+  const dispatch = useDispatch();
+
+  const handleShangeSort = (payload) => {
+    dispatch(changeSort(payload));
+  };
 
   const COLUMNS = {
     name: (value) => value,
@@ -24,6 +35,8 @@ const Table = () => {
       <table>
         <THead
           columns={COLUMNS}
+          onChangeSort={handleShangeSort}
+          sort={sort}
         />
         <TBody data={data} columns={COLUMNS} />
       </table>

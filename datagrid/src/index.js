@@ -13,6 +13,7 @@ import './index.scss';
 
 const initialState = {
   data: getData(1000),
+  sort: {},
 };
 
 const store = createStore(reducer, initialState);

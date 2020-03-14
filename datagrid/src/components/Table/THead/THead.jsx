@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import SortToggle from '../SortToggle';
 import './THead.scss';
 
-const THead = ({ columns }) => {
+const THead = ({ columns, sort, onChangeSort }) => {
   const keys = Object.keys(columns);
   const row = keys.map((key) => (
     <th
@@ -11,7 +12,12 @@ const THead = ({ columns }) => {
       key={key}
     >
       <div className="thead__content">
-        {key}
+        <SortToggle
+          order={key in sort ? sort[key] : 'not'}
+          onChangeSort={onChangeSort}
+        >
+          {key}
+        </SortToggle>
       </div>
     </th>
   ));
@@ -30,6 +36,8 @@ const THead = ({ columns }) => {
 
 THead.propTypes = {
   columns: PropTypes.instanceOf(Object).isRequired,
+  sort: PropTypes.instanceOf(Object).isRequired,
+  onChangeSort: PropTypes.func.isRequired,
 };
 
 export default THead;

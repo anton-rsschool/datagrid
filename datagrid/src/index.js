@@ -16,6 +16,8 @@ const initialState = {
   sort: {},
   searchQuery: null,
   filters: {},
+  selectedRows: {},
+  lastSelectedRow: null,
 };
 
 const store = createStore(reducer, initialState);

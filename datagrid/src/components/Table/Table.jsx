@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 
-import { changeSort } from '../../redux/actions';
+import { changeSort, selectRow } from '../../redux/actions';
 import sortData from '../../utils/sortData';
 import search from '../../utils/filterData';
 import THead from './THead';
@@ -21,7 +21,23 @@ const Table = () => {
     return sortData(filteredData, sort);
   });
   const sort = useSelector((state) => state.sort);
+  const lastSelectedRow = useSelector((state) => state.lastSelectedRow);
+  const selectedRows = useSelector((state) => state.selectedRows);
   const dispatch = useDispatch();
+
+  const handleSelectRow = (args, shiftKey) => {
+    const endIndex = data.findIndex((item) => item.id === args.id);
+    if (shiftKey && lastSelectedRow) {
+      const startIndex = data.findIndex((item) => item.id === lastSelectedRow);
+      const elements = data
+        .slice(startIndex > endIndex ? endIndex : startIndex,
+          (startIndex > endIndex ? startIndex : endIndex) + 1)
+        .map((item) => item.id);
+      dispatch(selectRow({ elements, lastSel: data[endIndex].id }));
+    } else {
+      dispatch(selectRow({ elements: [args.id], lastSel: data[endIndex].id }));
+    }
+  };
 
   const handleShangeSort = (payload) => {
     dispatch(changeSort(payload));
@@ -45,7 +61,12 @@ const Table = () => {
           onChangeSort={handleShangeSort}
           sort={sort}
         />
-        <TBody data={data} columns={COLUMNS} />
+        <TBody
+          data={data}
+          columns={COLUMNS}
+          selectedRows={selectedRows}
+          onSelectRow={handleSelectRow}
+        />
       </table>
     </div>
   );

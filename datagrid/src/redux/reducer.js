@@ -2,6 +2,7 @@ import {
   CHANGE_SORT,
   CHANGE_SEARCH_QUERY,
   CHANGE_FILTER,
+  SELECT_ROW,
 } from './actionsTypes';
 
 const reducer = (state, action) => {
@@ -47,6 +48,18 @@ const reducer = (state, action) => {
         newFilters[field] = values;
       }
       return { ...state, filters: newFilters };
+    }
+    case SELECT_ROW: {
+      const { elements, lastSel } = action.payload;
+      const { selectedRows } = state;
+      const newSelectedRow = { ...selectedRows };
+      const isDelete = elements.every((item) => item in newSelectedRow);
+      if (isDelete) {
+        elements.forEach((el) => delete newSelectedRow[el]);
+      } else {
+        elements.forEach((el) => { newSelectedRow[el] = true; });
+      }
+      return { ...state, selectedRows: newSelectedRow, lastSelectedRow: lastSel };
     }
     default:
       return state;

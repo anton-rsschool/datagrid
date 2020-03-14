@@ -2,6 +2,7 @@ import {
   CHANGE_SORT,
   CHANGE_SEARCH_QUERY,
   CHANGE_FILTER,
+  SELECT_ROW,
 } from './actionsTypes';
 
 const changeSort = (payload) => (
@@ -25,8 +26,16 @@ const changeFilter = (payload) => (
   }
 );
 
+const selectRow = (payload) => (
+  {
+    type: SELECT_ROW,
+    payload,
+  }
+);
+
 export {
   changeSort,
   changeSearchQquery,
   changeFilter,
+  selectRow,
 };

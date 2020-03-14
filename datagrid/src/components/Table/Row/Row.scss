@@ -1,0 +1,64 @@
+.row {
+  &--active {
+    background-color: rgb(212, 237, 218);
+  }
+
+  &__item {
+    box-sizing: border-box;
+    padding: 0 10px;
+
+    &--name {
+      position: sticky;
+      left: 40px;
+
+      width: 180px;
+      min-width: 180px;
+
+      background-color: #ffffff;
+    }
+
+    &--age {
+      width: 100px;
+      min-width: 100px;
+    }
+
+    &--city {
+      width: 180px;
+      min-width: 180px;
+    }
+
+    &--status {
+      width: 100px;
+      min-width: 100px;
+      text-align: center;
+    }
+
+    &--email {
+      width: 280px;
+      min-width: 280px;
+    }
+
+    &--role {
+      width: 120px;
+      min-width: 120px;
+    }
+
+    &--registration {
+      width: 300px;
+      min-width: 300px;
+    }
+  }
+
+  &__selected {
+    position: sticky;
+    left: 0;
+
+    box-sizing: border-box;
+    width: 40px;
+    min-width: 40px;
+
+    text-align: center;
+
+    background-color: #ffffff;
+  }
+}

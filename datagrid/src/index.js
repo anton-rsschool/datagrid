@@ -2,14 +2,26 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
 import App from './components/App';
+import getData from './utils/getData';
+import reducer from './redux/reducer';
 import './index.scss';
+
+const initialState = {
+  data: getData(1000),
+};
+
+const store = createStore(reducer, initialState);
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(
-  <App />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   rootElement,
 );
 

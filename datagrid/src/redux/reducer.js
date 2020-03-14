@@ -4,6 +4,7 @@ import {
   CHANGE_FILTER,
   SELECT_ROW,
   DELETE_ROW,
+  CHANGE_VISIBLE_COLUMNS,
 } from './actionsTypes';
 
 const reducer = (state, action) => {
@@ -73,6 +74,10 @@ const reducer = (state, action) => {
       return {
         ...state, data: newData, selectedRows: {}, lastSelectedRow: null,
       };
+    }
+    case CHANGE_VISIBLE_COLUMNS: {
+      const { payload } = action;
+      return { ...state, visibleColumns: payload };
     }
     default:
       return state;

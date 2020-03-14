@@ -23,6 +23,7 @@ const Table = () => {
   const sort = useSelector((state) => state.sort);
   const lastSelectedRow = useSelector((state) => state.lastSelectedRow);
   const selectedRows = useSelector((state) => state.selectedRows);
+  const visibleColumns = useSelector((state) => state.visibleColumns.map((item) => item.value));
   const dispatch = useDispatch();
 
   const handleSelectRow = (args, shiftKey) => {
@@ -53,17 +54,28 @@ const Table = () => {
     registration: (value) => moment(value).format('D MMM Y'),
   };
 
+  const columns = (object, array) => {
+    const keys = Object.keys(COLUMNS);
+    const result = {};
+    keys.forEach((item) => {
+      if (array.includes(item)) {
+        result[item] = object[item];
+      }
+    });
+    return result;
+  };
+
   return (
     <div className="table">
       <table>
         <THead
-          columns={COLUMNS}
+          columns={columns(COLUMNS, visibleColumns)}
           onChangeSort={handleShangeSort}
           sort={sort}
         />
         <TBody
           data={data}
-          columns={COLUMNS}
+          columns={columns(COLUMNS, visibleColumns)}
           selectedRows={selectedRows}
           onSelectRow={handleSelectRow}
         />

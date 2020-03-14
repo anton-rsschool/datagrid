@@ -4,6 +4,7 @@ import {
   CHANGE_FILTER,
   SELECT_ROW,
   DELETE_ROW,
+  CHANGE_VISIBLE_COLUMNS,
 } from './actionsTypes';
 
 const changeSort = (payload) => (
@@ -41,10 +42,18 @@ const deleteRow = (payload) => (
   }
 );
 
+const changeVisibleColumns = (payload) => (
+  {
+    type: CHANGE_VISIBLE_COLUMNS,
+    payload,
+  }
+);
+
 export {
   changeSort,
   changeSearchQquery,
   changeFilter,
   selectRow,
   deleteRow,
+  changeVisibleColumns,
 };

@@ -18,6 +18,15 @@ const initialState = {
   filters: {},
   selectedRows: {},
   lastSelectedRow: null,
+  visibleColumns: [
+    { value: 'name', label: 'Name', isFixed: true },
+    { value: 'age', label: 'Age', isFixed: false },
+    { value: 'city', label: 'City', isFixed: false },
+    { value: 'status', label: 'Status', isFixed: false },
+    { value: 'email', label: 'Email', isFixed: false },
+    { value: 'role', label: 'Role', isFixed: false },
+    { value: 'registration', label: 'Registration', isFixed: false },
+  ],
 };
 
 const store = createStore(reducer, initialState);

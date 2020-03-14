@@ -15,6 +15,7 @@ const initialState = {
   data: getData(1000),
   sort: {},
   searchQuery: null,
+  filters: {},
 };
 
 const store = createStore(reducer, initialState);

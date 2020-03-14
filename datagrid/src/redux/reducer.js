@@ -1,6 +1,7 @@
 import {
   CHANGE_SORT,
   CHANGE_SEARCH_QUERY,
+  CHANGE_FILTER,
 } from './actionsTypes';
 
 const reducer = (state, action) => {
@@ -35,6 +36,17 @@ const reducer = (state, action) => {
       const isQuery = query !== '' && fields;
       const newSearchQuery = isQuery ? searchQuery : null;
       return { ...state, searchQuery: newSearchQuery };
+    }
+    case CHANGE_FILTER: {
+      const { field, values } = action.payload;
+      const { filters } = state;
+      const newFilters = { ...filters };
+      if (field in filters && values.length === 0) {
+        delete newFilters[field];
+      } else {
+        newFilters[field] = values;
+      }
+      return { ...state, filters: newFilters };
     }
     default:
       return state;

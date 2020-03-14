@@ -1,6 +1,7 @@
 import {
   CHANGE_SORT,
   CHANGE_SEARCH_QUERY,
+  CHANGE_FILTER,
 } from './actionsTypes';
 
 const changeSort = (payload) => (
@@ -17,7 +18,15 @@ const changeSearchQquery = (payload) => (
   }
 );
 
+const changeFilter = (payload) => (
+  {
+    type: CHANGE_FILTER,
+    payload,
+  }
+);
+
 export {
   changeSort,
   changeSearchQquery,
+  changeFilter,
 };

@@ -1,4 +1,4 @@
-export default (data, searchQuery) => {
+export default (data, searchQuery, filters) => {
   const search = (item) => {
     if (!searchQuery) return true;
     const { query, fields } = searchQuery;
@@ -8,5 +8,13 @@ export default (data, searchQuery) => {
       return string.indexOf(query.toLowerCase()) !== -1;
     });
   };
-  return data.filter((item) => search(item));
+  const filter = (item) => {
+    const keys = Object.keys(filters);
+    if (keys.length === 0) return true;
+    return keys.every((key) => {
+      const value = item[key];
+      return filters[key].some((elem) => elem === value);
+    });
+  };
+  return data.filter((item) => search(item) && filter(item));
 };

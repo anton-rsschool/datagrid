@@ -11,8 +11,13 @@ import './Table.scss';
 
 const Table = () => {
   const data = useSelector((state) => {
-    const { data: initData, sort, searchQuery } = state;
-    const filteredData = search(initData, searchQuery);
+    const {
+      data: initData,
+      sort,
+      searchQuery,
+      filters,
+    } = state;
+    const filteredData = search(initData, searchQuery, filters);
     return sortData(filteredData, sort);
   });
   const sort = useSelector((state) => state.sort);

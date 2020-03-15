@@ -45,10 +45,10 @@ ReactDOM.render(
 const unloadHandler = () => {
   const state = store.getState();
   const {
-    sort, searchQuery, filters, selectedRows, visibleColumns,
+    sort, searchQuery, filters, visibleColumns,
   } = state;
   const newState = {
-    sort, searchQuery, filters, selectedRows, visibleColumns,
+    sort, searchQuery, filters, visibleColumns,
   };
   const currentState = JSON.stringify(newState);
   localStorage.setItem('appState', currentState);

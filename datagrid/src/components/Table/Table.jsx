@@ -67,7 +67,7 @@ const Table = () => {
 
   return (
     <div className="table">
-      <table>
+      <table className="table__table">
         <THead
           columns={columns(COLUMNS, visibleColumns)}
           onChangeSort={handleShangeSort}

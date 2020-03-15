@@ -7,7 +7,7 @@ import './TBody.scss';
 const TBody = ({
   data, columns, onSelectRow, selectedRows,
 }) => {
-  const rows = data.slice(0, 30).map((row) => (
+  const rows = data.map((row) => (
     <Row
       key={row.id}
       data={row}

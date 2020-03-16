@@ -3,11 +3,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import Select from 'react-select';
 
 import { deleteRow, changeVisibleColumns } from '../../redux/actions';
+import saveSCV from '../../utils/saveSCV';
 import './ToolBar.scss';
 
 const ToolBar = () => {
   const selectedRows = useSelector((state) => state.selectedRows);
   const visibleColumns = useSelector((state) => state.visibleColumns);
+  const params = useSelector(({
+    data, filters, searchQuery, sort,
+  }) => ({
+    data, filters, searchQuery, sort,
+  }));
+
   const dispatch = useDispatch();
 
   const options = [
@@ -19,6 +26,12 @@ const ToolBar = () => {
     { value: 'role', label: 'Role', isFixed: false },
     { value: 'registration', label: 'Registration', isFixed: false },
   ];
+
+  const saveTable = () => {
+    saveSCV(
+      params.data, params.filters, params.searchQuery, params.sort, visibleColumns,
+    );
+  };
 
   const handleChangeFields = (value, { action, removedValue }) => {
     switch (action) {
@@ -72,6 +85,12 @@ const ToolBar = () => {
         isMulti
         isSearchable={false}
       />
+      <button
+        type="button"
+        onClick={saveTable}
+      >
+        Save SCV
+      </button>
     </div>
   );
 };

@@ -1,16 +1,15 @@
-/* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { forwardRef } from 'react';
+import { FixedSizeList as List } from 'react-window';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 
 import { changeSort, selectRow } from '../../redux/actions';
 import sortData from '../../utils/sortData';
 import search from '../../utils/filterData';
-import VirtualizeTable from './VirtualizeTable';
-import Row from './Row';
 import THead from './THead';
 import TBody from './TBody';
+import Row from './Row';
 import './Table.scss';
 
 const Table = () => {
@@ -53,7 +52,7 @@ const Table = () => {
     name: (value) => value,
     age: (value) => value,
     city: (value) => value,
-    status: (value) => (value ? 'Yes' : 'No'),
+    active: (value) => (value ? 'Yes' : 'No'),
     email: (value) => value,
     role: (value) => value,
     registration: (value) => moment(value).format('D MMM Y'),
@@ -72,27 +71,57 @@ const Table = () => {
 
   const fields = columns(COLUMNS, visibleColumns);
 
+  const row = ({ index, style }) => (
+    <div className="row" style={style}>
+      <Row
+        key={data[index].id}
+        data={data[index]}
+        selected={data[index].id in selectedRows}
+        columns={fields}
+        onSelectRow={handleSelectRow}
+      />
+    </div>
+  );
+
+  const innerElementType = forwardRef(({ children, ...rest }, ref) => (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <div ref={ref} {...rest}>
+      <div className="sticky">
+        <THead
+          columns={fields}
+          onChangeSort={handleShangeSort}
+          sort={sort}
+        />
+      </div>
+      {children}
+    </div>
+  ));
+
+
   return (
     <div className="table">
       {isVirtualize ? (
-        <VirtualizeTable
-          data={data}
-          sort={sort}
-          columns={fields}
-          selectedRows={selectedRows}
-          handleSelectRow={handleSelectRow}
-          handleShangeSort={handleShangeSort}
-        />
+        <List
+          className="sticky-list"
+          height={600}
+          itemCount={data.length}
+          itemSize={40}
+          width={1200}
+          overscanCount={10}
+          innerElementType={innerElementType}
+        >
+          {row}
+        </List>
       ) : (
         <div className="table__table">
           <THead
-            columns={columns(COLUMNS, visibleColumns)}
+            columns={fields}
             onChangeSort={handleShangeSort}
             sort={sort}
           />
           <TBody
             data={data}
-            columns={columns(COLUMNS, visibleColumns)}
+            columns={fields}
             selectedRows={selectedRows}
             onSelectRow={handleSelectRow}
           />

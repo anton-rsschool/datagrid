@@ -72,35 +72,43 @@ const ToolBar = () => {
 
   return (
     <div className="tool-bar">
-      <button
-        className="tool-bar__button"
-        type="button"
-        disabled={selectedRows.size === 0}
-        onClick={handleClick}
-      >
-        Delete
-      </button>
-      <Select
-        className="tool-bar__select"
-        placeholder="Select column"
-        onChange={handleChangeFields}
-        options={options}
-        isClearable={visibleColumns.some((v) => !v.isFixed)}
-        styles={styles}
-        value={visibleColumns}
-        isMulti
-        isSearchable={false}
-      />
-      <button
-        type="button"
-        onClick={saveTable}
-      >
-        Save SCV
-      </button>
-      <ReactToggle
-        defaultChecked
-        onChange={handleToggle}
-      />
+      <div className="tool-bar__left">
+        <button
+          className="tool-bar__button"
+          type="button"
+          disabled={Object.keys(selectedRows).length === 0}
+          onClick={handleClick}
+        >
+          Delete
+        </button>
+        <Select
+          className="tool-bar__select"
+          placeholder="Select column"
+          onChange={handleChangeFields}
+          options={options}
+          isClearable={visibleColumns.some((v) => !v.isFixed)}
+          styles={styles}
+          value={visibleColumns}
+          isMulti
+          isSearchable={false}
+        />
+      </div>
+      <div className="tool-bar__right">
+        <button
+          className="tool-bar__button"
+          type="button"
+          onClick={saveTable}
+        >
+          Save SCV
+        </button>
+        <div>
+          <span>Virtualisation: </span>
+          <ReactToggle
+            defaultChecked
+            onChange={handleToggle}
+          />
+        </div>
+      </div>
     </div>
   );
 };

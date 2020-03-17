@@ -10,10 +10,10 @@ const getData = (number) => {
       name: `${firstName} ${lastName}`,
       age: faker.random.number(40),
       city: faker.address.city(),
-      status: faker.random.boolean(),
+      active: faker.random.boolean(),
       email: faker.internet.email(firstName, lastName),
       role: faker.random.arrayElement(['mentor', 'student', 'activist']),
-      registration: faker.date.between('2019-1-1', '2020-1-1').toUTCString(),
+      registration: faker.date.between('2019-1-1', '2020-1-1').getTime(),
     });
   }
   return data;

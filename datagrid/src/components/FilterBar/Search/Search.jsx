@@ -18,6 +18,7 @@ const Search = () => {
     { value: 'name', label: 'Name' },
     { value: 'city', label: 'City' },
     { value: 'age', label: 'Age' },
+    { value: 'email', label: 'Email' },
   ];
 
   const handleChange = (event) => {

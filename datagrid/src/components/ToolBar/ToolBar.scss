@@ -3,13 +3,25 @@
   z-index: 3;
 
   display: flex;
-  margin: 0 0 10px 0;
+  justify-content: space-between;
+  margin: 0 0 30px 0;
+
+  &__left {
+    display: flex;
+    align-items: center;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+  }
 
   &__button {
-    margin: 0 20px 0 0;
+    height: 36px;
+    padding: 0 20px;
+    margin: 0 40px 0 0;
+
+    cursor: pointer;
   }
 
-  &__select {
-    
-  }
 }

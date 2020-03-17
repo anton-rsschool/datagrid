@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -6,7 +7,9 @@ import sortNot from './img/sort-not.svg';
 import sortAsc from './img/sort-asc.svg';
 import sortDesc from './img/sort-desc.svg';
 
-const SortToggle = ({ children, order, onChangeSort }) => {
+const SortToggle = ({
+  children, order, onChangeSort, index,
+}) => {
   const handleClick = (event) => {
     const { shiftKey } = event;
     onChangeSort({ field: children, isPressedShift: shiftKey });
@@ -26,6 +29,7 @@ const SortToggle = ({ children, order, onChangeSort }) => {
     >
       { children }
       <div className="toggle__indicator">
+        {index}
         <img className="toggle__image" src={IMAGES[order]} alt="sorting" />
       </div>
     </button>

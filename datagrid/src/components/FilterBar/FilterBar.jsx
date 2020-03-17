@@ -21,7 +21,7 @@ const FilterBar = () => {
     : [];
   const handleToggle = (value) => {
     const values = value ? [value] : [];
-    dispatch(changeFilter({ field: 'status', values }));
+    dispatch(changeFilter({ field: 'active', values }));
   };
 
   const handleChange = (value) => {
@@ -33,7 +33,7 @@ const FilterBar = () => {
     <div className="filter-bar">
       <Toggle
         onToggle={handleToggle}
-        isChecked={'status' in filters}
+        isChecked={'active' in filters}
       />
       <Search />
       <EnumFilter

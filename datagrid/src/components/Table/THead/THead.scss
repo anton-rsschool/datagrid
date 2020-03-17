@@ -1,52 +1,55 @@
 .thead {
+  height: 40px;
+  box-sizing: border-box;
+
   &__row {
     display: flex;
+    height: 40px;
   }
   
-
   &__item {
     box-sizing: border-box;
-    min-width: 100px;
-    padding: 0 10px;
+
+    background-color: #eeeeee;
 
     &--name {
-      // position: sticky;
-      // left: 40px;
+      position: sticky;
+      left: 40px;
 
-      width: 180px;
-      min-width: 180px;
+      width: 250px;
+      min-width: 250px;
 
-      background-color: #ffffff;
     }
 
     &--age {
-      width: 100px;
+      width: 140px;
+      min-width: 140px;
     }
 
     &--city {
-      width: 180px;
-      min-width: 180px;
+      width: 220px;
+      min-width: 220px;
     }
 
     &--status {
-      width: 100px;
+      width: 200px;
+      min-width: 200px;
     }
 
     &--email {
-      width: 280px;
-      min-width: 280px;
+      width: 340px;
+      min-width: 340px;
     }
 
     &--role {
-      width: 120px;
-      width: 120px;
+      width: 140px;
+      min-width: 140px;
     }
 
     &--registration {
-      width: 300px;
-      min-width: 300px;
+      width: 200px;
+      min-width: 200px;
     }
-
   }
 
   &__content {
@@ -60,9 +63,11 @@
     width: 40px;
     min-width: 40px;
     box-sizing: border-box;
+    padding: 11px 0 0 0;
 
     text-align: center;
 
-    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    background-color: #eeeeee;
   }
 }

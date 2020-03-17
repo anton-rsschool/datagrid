@@ -6,6 +6,7 @@ import './THead.scss';
 
 const THead = ({ columns, sort, onChangeSort }) => {
   const keys = Object.keys(columns);
+  const sortList = Object.keys(sort);
   const row = keys.map((key) => (
     <div
       className={`thead__item thead__item--${key}`}
@@ -15,6 +16,7 @@ const THead = ({ columns, sort, onChangeSort }) => {
         <SortToggle
           order={key in sort ? sort[key] : 'not'}
           onChangeSort={onChangeSort}
+          index={sortList.length > 0 && sortList.includes(key) ? sortList.indexOf(key) + 1 : null}
         >
           {key}
         </SortToggle>

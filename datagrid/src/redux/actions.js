@@ -5,6 +5,7 @@ import {
   SELECT_ROW,
   DELETE_ROW,
   CHANGE_VISIBLE_COLUMNS,
+  TOGGLE_VIRTUALIZATION,
 } from './actionsTypes';
 
 const changeSort = (payload) => (
@@ -49,6 +50,13 @@ const changeVisibleColumns = (payload) => (
   }
 );
 
+const toggleVirtualization = (payload) => (
+  {
+    type: TOGGLE_VIRTUALIZATION,
+    payload,
+  }
+);
+
 export {
   changeSort,
   changeSearchQquery,
@@ -56,4 +64,5 @@ export {
   selectRow,
   deleteRow,
   changeVisibleColumns,
+  toggleVirtualization,
 };

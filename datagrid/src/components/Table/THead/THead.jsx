@@ -7,7 +7,7 @@ import './THead.scss';
 const THead = ({ columns, sort, onChangeSort }) => {
   const keys = Object.keys(columns);
   const row = keys.map((key) => (
-    <th
+    <div
       className={`thead__item thead__item--${key}`}
       key={key}
     >
@@ -19,18 +19,18 @@ const THead = ({ columns, sort, onChangeSort }) => {
           {key}
         </SortToggle>
       </div>
-    </th>
+    </div>
   ));
 
   return (
-    <thead className="thead">
-      <tr>
-        <th className="thead__selected">
+    <div className="thead">
+      <div className="thead__row">
+        <div className="thead__selected">
           #
-        </th>
+        </div>
         {row}
-      </tr>
-    </thead>
+      </div>
+    </div>
   );
 };
 

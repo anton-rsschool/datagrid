@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
@@ -5,6 +7,8 @@ import moment from 'moment';
 import { changeSort, selectRow } from '../../redux/actions';
 import sortData from '../../utils/sortData';
 import search from '../../utils/filterData';
+import VirtualizeTable from './VirtualizeTable';
+import Row from './Row';
 import THead from './THead';
 import TBody from './TBody';
 import './Table.scss';
@@ -24,6 +28,7 @@ const Table = () => {
   const lastSelectedRow = useSelector((state) => state.lastSelectedRow);
   const selectedRows = useSelector((state) => state.selectedRows);
   const visibleColumns = useSelector((state) => state.visibleColumns.map((item) => item.value));
+  const isVirtualize = useSelector((state) => state.virtualization);
   const dispatch = useDispatch();
 
   const handleSelectRow = (args, shiftKey) => {
@@ -65,21 +70,34 @@ const Table = () => {
     return result;
   };
 
+  const fields = columns(COLUMNS, visibleColumns);
+
   return (
     <div className="table">
-      <table className="table__table">
-        <THead
-          columns={columns(COLUMNS, visibleColumns)}
-          onChangeSort={handleShangeSort}
-          sort={sort}
-        />
-        <TBody
+      {isVirtualize ? (
+        <VirtualizeTable
           data={data}
-          columns={columns(COLUMNS, visibleColumns)}
+          sort={sort}
+          columns={fields}
           selectedRows={selectedRows}
-          onSelectRow={handleSelectRow}
+          handleSelectRow={handleSelectRow}
+          handleShangeSort={handleShangeSort}
         />
-      </table>
+      ) : (
+        <div className="table__table">
+          <THead
+            columns={columns(COLUMNS, visibleColumns)}
+            onChangeSort={handleShangeSort}
+            sort={sort}
+          />
+          <TBody
+            data={data}
+            columns={columns(COLUMNS, visibleColumns)}
+            selectedRows={selectedRows}
+            onSelectRow={handleSelectRow}
+          />
+        </div>
+      )}
     </div>
   );
 };

@@ -5,6 +5,7 @@ import {
   SELECT_ROW,
   DELETE_ROW,
   CHANGE_VISIBLE_COLUMNS,
+  TOGGLE_VIRTUALIZATION,
 } from './actionsTypes';
 
 const reducer = (state, action) => {
@@ -78,6 +79,10 @@ const reducer = (state, action) => {
     case CHANGE_VISIBLE_COLUMNS: {
       const { payload } = action;
       return { ...state, visibleColumns: payload };
+    }
+    case TOGGLE_VIRTUALIZATION: {
+      const { payload } = action;
+      return { ...state, virtualization: payload };
     }
     default:
       return state;

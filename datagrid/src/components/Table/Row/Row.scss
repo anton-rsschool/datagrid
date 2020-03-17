@@ -1,4 +1,6 @@
 .row {
+  display: flex;
+  width: 1300px;
   &--active {
     background-color: rgb(212, 237, 218);
   }

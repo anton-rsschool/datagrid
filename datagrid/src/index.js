@@ -28,11 +28,17 @@ const initialState = {
     { value: 'role', label: 'Role', isFixed: false },
     { value: 'registration', label: 'Registration', isFixed: false },
   ],
+  virtualization: true,
 };
 
 const state = savedState ? { ...initialState, ...JSON.parse(savedState) } : initialState;
 
-const store = createStore(reducer, state);
+const store = createStore(
+  reducer,
+  state,
+  // eslint-disable-next-line no-underscore-dangle
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+);
 
 const rootElement = document.getElementById('root');
 ReactDOM.render(

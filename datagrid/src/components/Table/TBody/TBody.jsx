@@ -18,9 +18,9 @@ const TBody = ({
   ));
 
   return (
-    <tbody className="tbody">
+    <div className="tbody">
       {rows}
-    </tbody>
+    </div>
   );
 };
 

@@ -15,23 +15,23 @@ const Row = ({
   const items = Object.keys(columns).map((item) => {
     const className = `row__item row__item--${item}`;
     return (
-      <td className={className} key={item}>
+      <div className={className} key={item}>
         {columns[item](data[item])}
-      </td>
+      </div>
     );
   });
   return (
-    <tr className={`row${selected ? ' row--active' : ''}`}>
-      <td className="row__selected">
+    <div className={`row${selected ? ' row--active' : ''}`}>
+      <div className="row__selected">
         <input
           type="checkbox"
           checked={selected}
           onClick={handleClick}
           onChange={handleChange}
         />
-      </td>
+      </div>
       {items}
-    </tr>
+    </div>
   );
 };
 

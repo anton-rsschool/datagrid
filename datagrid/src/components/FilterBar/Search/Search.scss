@@ -1,0 +1,32 @@
+.search {
+  margin: 0 40px 0 0;
+  &__control {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  &__label {
+    display: inline-block;
+    margin: 0 0 10px 0;
+  }
+
+  &__input {
+    box-sizing: border-box;
+
+    height: 38px;
+  }
+
+  &__select {
+    min-width: 160px;
+    max-width: 240px;
+  }
+
+  &__button {
+    box-sizing: border-box;
+    height: 38px;
+    padding: 0 15px;
+
+    cursor: pointer;
+  }
+}

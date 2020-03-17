@@ -1,0 +1,17 @@
+.table {
+  position: relative;
+
+  max-width: 1200px;
+  max-height: 600px;
+  overflow-x: auto;
+}
+
+.sticky-list {
+  will-change: auto !important;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}

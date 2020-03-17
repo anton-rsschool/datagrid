@@ -1,0 +1,27 @@
+.tool-bar {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 30px 0;
+
+  &__left {
+    display: flex;
+    align-items: center;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+
+  &__button {
+    height: 36px;
+    padding: 0 20px;
+    margin: 0 40px 0 0;
+
+    cursor: pointer;
+  }
+
+}
